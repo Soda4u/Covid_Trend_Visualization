@@ -1,6 +1,11 @@
 # Covid_Trend_Visualization
 This was a custom, practice project I wanted to do in order to visualize the trends of COVID-19 in 4 different states: CA, AZ, CO, and WA.
 Organization of the dataset was done through SQLite, and analysis was done through Python.
+"United_States_COVID-19_by_State.csv" is the original, raw data,
+"Covid_Table_csv.csv" is the cleaned data in a csv format,
+"Covid_Table_json.json" is the cleaned data in a json format,
+"myDatabase.sqbpro" is the database file from DB Browser that holds all the information about SQLite Queries I wrote,
+"Covid_Table_csv_Analysis.py" is the Python script I wrote in order to visualize the results of the data.
 
 This README file records my thought processes, mistakes, and lessons I've learned throughout the whole project. 
 
