@@ -10,7 +10,7 @@ Organization of the dataset was done through SQLite, and analysis was done throu
 ----------
 
 
- **Below records my thought processes, mistakes, and lessons I've learned throughout the whole project.**
+ **Below records the processes, mistakes, and lessons I've learned throughout the whole project.**
 
 
 ## Starting the Project
