@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="/Users/jun/dev/Personal_Projects/covid_data/myDatabase.db" readonly="0" foreign_keys="1" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="1000" synchronous="2"/><attached/><window><main_tabs open="structure browser pragmas query" current="3"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="100"/><column_width id="3" width="1814"/><column_width id="4" width="0"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><current_table name="4,14:maincovid_table_v3"/><default_encoding codec=""/><browse_table_settings><table schema="main" name="Covid_Table" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="73"/><column index="2" value="36"/><column index="3" value="74"/><column index="4" value="71"/><column index="5" value="77"/><column index="6" value="74"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="covid_table_v3" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="96"/><column index="2" value="35"/><column index="3" value="59"/><column index="4" value="68"/><column index="5" value="68"/><column index="6" value="61"/><column index="7" value="67"/><column index="8" value="59"/><column index="9" value="67"/><column index="10" value="68"/><column index="11" value="66"/><column index="12" value="73"/><column index="13" value="134"/><column index="14" value="86"/><column index="15" value="91"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table></browse_table_settings></tab_browse><tab_sql><sql name="SQL 1">/*Create a copy of the original, raw table for data wrangling. */
+
+CREATE TABLE &quot;covid_table_v3&quot; AS
+SELECT *
+FROM
+&quot;United_States_COVID-19_by_State&quot;</sql><sql name="SQL 4">/*Delete records that are not from any of these 4 states:
+Arizona, California, Colorado, Washington.*/
+
+DELETE FROM covid_table_v3
+WHERE
+state != 'CA' AND state !='WA' AND state !='CO' AND state !='AZ'
+</sql><sql name="SQL 2">/*Update the table's date format from &quot;MM/DD/YYYY&quot; to 
+&quot;YYYY-MM-DD&quot;.*/
+
+UPDATE covid_table_v3
+SET submission_date = substr(submission_date,7,4) ||'-'||
+substr(submission_date,1,2) ||'-'|| 
+substr(submission_date,4,2)
+</sql><sql name="SQL 6">/*Checking if any NULL values exist only in one column*/
+
+SELECT *
+FROM
+covid_table_v3
+WHERE
+&quot;conf_cases&quot; ISNULL AND
+&quot;prob_cases&quot; NOTNULL </sql><sql name="SQL 7">/*Filling in null values with &quot;N/A&quot; String in the respective columns*/
+
+SELECT 
+IFNULL(conf_cases,&quot;N/A&quot;) as &quot;Conf_Cases&quot;,
+IFNULL(prob_cases, &quot;N/A&quot;) as &quot;Prob_Cases&quot;,
+IFNULL(conf_death,&quot;N/A&quot;) as &quot;Conf_Deaths&quot;,
+IFNULL(prob_death,&quot;N/A&quot;) as &quot;Prob_Deaths&quot;
+
+FROM
+covid_table_v3
+</sql><sql name="SQL 3">/*Create a new table from desired fields after organization through
+updates*/
+
+CREATE TABLE &quot;Covid_Table&quot; AS
+
+SELECT
+submission_date AS &quot;Date&quot;,
+state AS &quot;State&quot;,
+tot_cases AS &quot;Total_Cases&quot;,
+new_case AS &quot;New_Cases&quot;,
+tot_death AS &quot;Total_Deaths&quot;,
+new_death AS &quot;New_Deaths&quot;
+FROM
+covid_table_v3
+ORDER BY
+state,
+submission_date</sql><current_tab id="4"/></tab_sql></sqlb_project>
