@@ -1,27 +1,28 @@
 # Covid_Trend_Visualization
 This was a custom, practice project I wanted to do in order to visualize the trends of COVID-19 in 4 different states: CA, AZ, CO, and WA.
 Organization of the dataset was done through SQLite, and analysis was done through Python.
-"United_States_COVID-19_by_State.csv" is the original, raw data,
-"Covid_Table_csv.csv" is the cleaned data in a csv format,
-"Covid_Table_json.json" is the cleaned data in a json format,
-"myDatabase.sqbpro" is the database file from DB Browser that holds all the information about SQLite Queries I wrote,
-"Covid_Table_csv_Analysis.py" is the Python script I wrote in order to visualize the results of the data.
-
-This README file records my thought processes, mistakes, and lessons I've learned throughout the whole project. 
+- "United_States_COVID-19_by_State.csv" is the original, raw data,
+- "Covid_Table_csv.csv" is the cleaned data in a csv format
+- "Covid_Table_json.json" is the cleaned data in a json format
+- "myDatabase.sqbpro" is the database file from DB Browser that holds all the information about SQLite Queries I wrote
+- "Covid_Table_csv_Analysis.py" is the Python script I wrote in order to visualize the results of the data
 
 
-# Starting the Project
+**This README file records my thought processes, mistakes, and lessons I've learned throughout the whole project.**
+
+
+## Starting the Project
 I first needed a credible source of data that compiled information about COVID-19 across the country.
 
-Thankfully, the US Center for Disease Control has numerous public datasets available to the public, which is where I was able to download the data I needed.
-(source: https://data.cdc.gov/Case-Surveillance/United-States-COVID-19-Cases-and-Deaths-by-State-o/9mfq-cb36/data)
+Thankfully, the US Center for Disease Control has numerous public datasets available to the public, which is where I was able to download the data I needed
+([source](https://data.cdc.gov/Case-Surveillance/United-States-COVID-19-Cases-and-Deaths-by-State-o/9mfq-cb36/data)).
 An assumption at this step is that, being a government-owned source, the CDC database compiles accurate information about COVID-19 stats. In a real-world situation,
 data mining would probably require a lot more attention and data profiling in order to ensure that the data is accurate and clean enough for analysis.
 This dataset had information about the spread of COVID across the country from January 2020 to October 2022, which was perfect for me.
 I downloaded the dataset as a csv file, and uploaded it onto my local database in DB Browser.
 
 
-# Data Cleaning
+## Data Cleaning
 Using SQLite, I wanted to clean up the table and query for the information I was analyzing.
 
 The first step was to create a copy of the original raw data for cleaning, a good practice for data analysis. This was done through the CREATE TABLE statement,
@@ -46,7 +47,7 @@ state, then submission date in order to create a table that separated the states
 
 This final table was then exported as a csv and json file, that could be uploaded onto VSCode for analysis.
 
-# Data Visualization
+## Data Visualization
 Using VSCode, specifically with Python scripts, the data table derived from the previous step was visualized.
 
 The organized and queried table in a csv file was imported onto VSCode. It was converted into a DataFrame through the pandas library "read_csv" function.
