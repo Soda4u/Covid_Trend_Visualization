@@ -61,3 +61,6 @@ Sub-DataFrames were created by using the "query" function, in order to separate 
 using matplotlib.pyplot functions, with the x-axis being the date, and the y-axis being the number of new cases per capita (divided by the population of each state),
 with each state being distinguished by a determined color. I noticed in the plot that the x-axis ticks were too cluttered, due to the sheer number of dates that the
 dataset had. I was able to organize the dates by the autofmt_xdate() function, decreasing the number of ticks in the x-axis, allowing for a cleaner view.
+
+
+## Insights
